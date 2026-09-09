@@ -1,0 +1,165 @@
+# NextSelf Advisory | Coaching — website
+
+Static site. No build step, no dependencies. Ten pages plus a shared stylesheet and one script.
+
+```
+index.html                      Home — overview that routes onward
+approach.html                   The NextSelf Model, four pillars, engagement, fit
+coaching.html                   Executive coaching + pricing + the AI comparison
+startup-advisory.html           Founders & early-stage teams
+early-starters.html             New grads & early career
+testimonials.html               Client testimonials  ← see below
+about.html                      The coach — Indrasanan Krishnan
+brief.html                      The NextSelf Brief (newsletter)
+faq.html                        All FAQs in one place
+contact.html                    Book a call — the only page with the calendar link
+
+nextself_startups_v1_0.html     Redirect stub → startup-advisory.html
+nextself_earlystart_v1_0.html   Redirect stub → early-starters.html
+
+assets/css/styles.css           Whole design system
+assets/js/main.js               Reveal, nav, accordion, tabs, count-up, gate
+assets/img/wordmark.png         Full lockup (dark type, for light grounds)
+assets/img/wordmark-light.png   Full lockup (light type, for indigo grounds)
+assets/img/mark.png             "N›" mark alone — favicon, compact use
+```
+
+**Structure follows the Global Digital pattern:** a home page that introduces and routes
+onward, with real separate pages for everything substantial — rather than one long scroll.
+Home went from 13,263px to 5,723px.
+
+Nav is **Approach · Services · Testimonials · The Brief · About**, plus a *Book a call* button.
+"Services" is an anchor to the three-way router on the home page, which links to the three
+service pages. FAQ sits in the footer.
+
+Every CTA on every page points to `contact.html`; the HoneyBook calendar link lives there and
+nowhere else. If you change the booking URL, there is exactly one place to change it.
+
+Nav and footer are duplicated in each file (no build step, so the site stays hand-editable).
+If you add a nav item, update all ten pages.
+
+## Adding a testimonial
+
+`testimonials.html` ships with placeholder slots and **no invented quotes** — the brand brief
+forbids fabricating testimonials, and the practice has none published yet.
+
+There is a copy-paste block inside an HTML comment at the top of the `.tm-grid` in
+`testimonials.html`. To add one: copy that block, paste it into the grid, replace the text, and
+delete one `.tm-placeholder` for each real testimonial you add. Do the same in the preview grid
+on `index.html`.
+
+- The avatar is **initials, not a photo**, so you never have to ask anyone for a headshot.
+- Anonymised attribution ("Director · Healthcare") is fully supported and is often what people
+  will actually agree to.
+- Add `is-featured` to one card to make it span two columns on a dark ground. Use it for your
+  single strongest quote only — the effect dies if everything is featured.
+
+Both card styles were rendered and checked; only the content is missing.
+
+## Running it locally
+
+```bash
+npx --yes http-server . -p 4180 -c-1
+```
+
+Then open <http://localhost:4180>. Any static server works; there is nothing to compile.
+
+## Deploying
+
+Upload the files as they are. The two `nextself_*_v1_0.html` stubs exist because those URLs
+are already live and may be linked from LinkedIn or the newsletter — they redirect to the new
+clean paths. If the host serves extensionless URLs (`/startup-advisory` → `startup-advisory.html`),
+the stubs keep working as-is; if not, configure that mapping or keep the old paths in circulation.
+
+## Design system
+
+Still exactly three brand colours. Richness comes from **tonal depth inside them** — gradient,
+grain, glow, translucency — not from new hues.
+
+| Token | Value | Use |
+|---|---|---|
+| `--off-white` | `#F8F4EE` | Light ground |
+| `--warm` / `--warm-2` | `#F0EAE0` / `#E8E0D3` | Warm sections (gradient pair) |
+| `--paper` | `#FFFFFF` | Cards |
+| `--indigo` | `#2D3250` | Brand indigo |
+| `--indigo-2` | `#3E4568` | Gradient highlight |
+| `--indigo-deep` | `#1A1E33` | Dark ground base |
+| `--indigo-ink` | `#12152A` | Footer, marquee, deepest point |
+| `--gold` | `#F0A500` | Accent — **rationed** |
+
+The four indigo steps are what let a dark section read as *ink* rather than as flat `#333`.
+Every dark ground is a layered radial gradient plus an SVG film-grain overlay at ~16% on
+`overlay` blend — that grain is doing most of the work against the "flat digital" look.
+
+**Scroll rhythm is deliberate:** dark hero → ink marquee → light → paper → dark Model →
+light pillars → warm coach → light compare → paper pricing → light FAQ → dark Brief panel →
+dark CTA → ink footer. Alternating hard, rather than page after page of cream.
+
+Gold stays scarce: eyebrows, the two key nodes of the Model, list markers, the featured pricing
+tier, one italic word per headline, and the closing CTA. The hero CTA is deliberately *not* gold —
+it inverts to off-white so gold still lands when it arrives at the bottom of the page.
+
+Type is **Georgia** for display (a system font — nothing to load, nothing to 404) against
+**Inter** for UI. Display runs to 88px against 16px body — a ~5.5× ratio. Oversized outlined
+ghost numerals carry the pillars and the service cards.
+
+Motion: scroll-reveal (fade + 20px rise, 60ms stagger, fires once), two sticky columns, a
+looping marquee, a slow-rotating dashed ring and floating glass chips in the hero, hover lifts
+with a gold hairline wipe across each card's top edge, count-up on stats. All disabled under
+`prefers-reduced-motion`. No parallax, no scroll-jacking.
+
+### Two CSS traps worth remembering
+
+- `overflow-x: hidden` on `body` makes body its own scroll container, which zeroes
+  `window.scrollY` and silently kills both the sticky-nav state and `position: sticky`.
+  Use `overflow-x: clip` on `html` instead. (This bit us once already.)
+- The reveal's hidden state is scoped under `.js`, and `main.js` force-shows everything after
+  2.5s if the observer never fires. Without both, a failed IntersectionObserver leaves the
+  entire page at `opacity: 0`.
+
+## Things you should know
+
+**The access gate is not security.** `assets/js/main.js` hides an overlay when the code in
+`data-code` matches. The entire page content is in the DOM regardless — anyone can read it with
+View Source, exactly as on the current live site. It is kept as a *positioning* device
+(a selective practice, signalled). If you need real privacy, use host-level protection:
+Cloudflare Access, a Netlify password, or HTTP basic auth. A referral link of the form
+`?access=nextself2026` opens it without typing anything.
+
+**The newsletter form has no backend.** It validates the address and hands off to `mailto:`.
+When The Brief gets a real provider (Beehiiv, ConvertKit, Substack), replace `initBrief()` in
+`main.js` with their endpoint.
+
+## Open questions for the client
+
+1. **Startup Advisory pricing contradicts itself.** Carried over verbatim from the live site:
+   Starter is 5 hours at $399 (~$80/hr), Builder is 10 hours at $900 ($90/hr) labelled
+   *"save 10%"*. The larger block is **more** expensive per hour, so it neither saves 10% nor
+   rewards the bigger commitment. Deliberately not "fixed" — pricing is your call. Options:
+   $720 for 10 hours (a true 10% off $80/hr), or drop the "save 10%" claim.
+
+2. **The logo's gold is not the brand's gold.** The wordmark uses bronze `#AB8A61`; the brief
+   locks Amber Gold `#F0A500`. The logo is used exactly as supplied and the site uses the brief's
+   amber, so the two sit side by side. Worth reconciling one way or the other.
+
+3. **Location is inconsistent.** The old main page said Raleigh, NC; the old startup page said
+   Morrisville, NC; the Early Starters FAQ says Raleigh–Durham. All three now say Raleigh, NC.
+   Confirm which is right.
+
+4. **"6 session types" was stale.** The old Early Starters hero said 6; the page listed 8, and
+   the main site said 8. Now 8 everywhere.
+
+5. **The Leadership Assessment is not built.** The brand brief's biggest gap is a self-serve
+   ten-minute diagnostic as the front door. It is deliberately absent rather than faked — the
+   brief is explicit that nothing should appear publicly as an existing service before it exists.
+   It needs a real scoring methodology first.
+
+6. **Tagline retired.** "Your better version is your NextSelf" was the old hero line, and it sits
+   on the brand brief's own *never say this* list ("Become the best version of yourself").
+   Replaced with **"Understand how you operate. Then decide what changes."**
+
+7. **There is no photograph of Indrasanan.** This is now the single highest-impact thing left.
+   The coach panel currently holds the "N›" mark on a dark gradient as a placeholder, and the
+   brief confirms no photography library exists. One good, well-lit portrait — plus a second
+   candid or desk shot — would do more for credibility on this page than any further design
+   work. The panel is sized `3 / 3.6` portrait; drop an image in and it will fill correctly.
