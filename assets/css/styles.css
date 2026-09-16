@@ -1365,31 +1365,36 @@ body.is-gated { overflow: hidden; }
   background: var(--off-white);
   min-height: 760px;
 }
+/* Opaque background: the HoneyBook widget is transparent, so anything placed
+   behind this frame would show through and collide with its own text. */
 .booking-frame iframe {
   display: block;
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   min-height: 760px;
   border: 0;
+  background: var(--paper);
 }
-/* Sits behind the iframe: if the frame is blocked or slow, this shows through. */
-.booking-fallback {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: grid;
-  place-items: center;
+
+/* Shown only if the frame genuinely fails to load (blocked by an extension,
+   network error). Hidden otherwise — never stacked under the iframe. */
+.booking-error {
+  display: none;
   text-align: center;
-  padding: 40px;
+  padding: 60px 40px;
   color: var(--muted);
   font-size: 14.5px;
 }
-.booking-frame iframe { position: relative; z-index: 1; }
+.booking-error a { border-bottom: 1px solid var(--gold); }
+.booking.is-failed .booking-frame { display: none; }
+.booking.is-failed .booking-error { display: block; }
 .booking-foot {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 14px;
   padding: 18px 10px 6px;
   font-size: 13.5px;

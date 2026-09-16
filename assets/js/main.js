@@ -243,6 +243,25 @@
     });
   }
 
+  /* ---- Booking embed ------------------------------------------------- */
+  /* The scheduler is third-party and gets blocked by some privacy extensions.
+     Nothing is stacked behind the iframe (that bled through, since the widget
+     is transparent) — instead the error state is revealed only on real failure. */
+  function initBooking() {
+    var wrap = document.querySelector('[data-booking]');
+    if (!wrap) return;
+    var frame = wrap.querySelector('iframe');
+    if (!frame) return;
+
+    // Only a real error event flips to the failed state. Deliberately no
+    // timeout: the frame is cross-origin, so we cannot inspect whether it
+    // rendered, and if it finished loading before this script ran the load
+    // event never fires — a timer would then hide a perfectly working
+    // calendar behind an error. The "Open in a new tab" link below the frame
+    // is the always-available fallback instead.
+    frame.addEventListener('error', function () { wrap.classList.add('is-failed'); });
+  }
+
   /* ---- Year ---------------------------------------------------------- */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -258,6 +277,7 @@
     initCount();
     initTabs();
     initBrief();
+    initBooking();
     initYear();
   }
 
