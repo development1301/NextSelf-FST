@@ -21,7 +21,9 @@ assets/css/styles.css           Whole design system
 assets/js/main.js               Reveal, nav, accordion, tabs, count-up, gate
 assets/img/wordmark.png         Full lockup (dark type, for light grounds)
 assets/img/wordmark-light.png   Full lockup (light type, for indigo grounds)
-assets/img/mark.png             "N›" mark alone — favicon, compact use
+assets/img/mark.svg             "N›" mark as vector — favicon, hero, inline use
+assets/img/mark.png             "N›" mark raster — favicon fallback
+assets/img/indrasanan.jpg       Portrait — hero on 3 pages, and about.html
 ```
 
 **Structure follows the Global Digital pattern:** a home page that introduces and routes
@@ -55,9 +57,10 @@ booking URL, edit that one file:
 grep -n hbportal contact.html
 ```
 
-A visible fallback sits *behind* the iframe ("Loading the booking calendar… open it directly"),
-so if a privacy extension blocks the frame the booking is still reachable rather than silently
-becoming a blank box.
+If the frame fails to load, an error block below it points to the calendar directly — and an
+"Open in a new tab" link is always visible regardless, so booking is never unreachable. There is
+deliberately no load timeout: the frame is cross-origin, so a timer could hide a working
+calendar behind an error.
 
 Nav and footer are duplicated in each file (no build step, so the site stays hand-editable).
 If you add a nav item, update all ten pages.
@@ -94,14 +97,6 @@ real content, delete the `#tm-empty` panel. Do the same on `index.html`.
   will actually agree to.
 - Add `is-featured` to one card to make it span two columns on a dark ground. Use it for your
   single strongest quote only — the effect dies if everything is featured.
-
-- The avatar is **initials, not a photo**, so you never have to ask anyone for a headshot.
-- Anonymised attribution ("Director · Healthcare") is fully supported and is often what people
-  will actually agree to.
-- Add `is-featured` to one card to make it span two columns on a dark ground. Use it for your
-  single strongest quote only — the effect dies if everything is featured.
-
-
 
 ## Running it locally
 
