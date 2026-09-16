@@ -1430,3 +1430,144 @@ body.is-gated { overflow: hidden; }
 @media (max-width: 780px) {
   .nav-logo img, .nav.is-stuck .nav-logo img { height: 29px; }
 }
+
+/* ==========================================================================
+   30. Hero figure — portrait-led
+   Replaces the abstract orb. A boutique practice sells the practitioner, so
+   the hero leads with the person and keeps the brand geometry as support.
+   ========================================================================== */
+.hero-figure {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 440px;
+  margin-inline: auto;
+  padding: 0 0 26px 0;
+}
+
+/* Gold arc sweeping behind the frame — brand geometry, not decoration soup. */
+.hero-figure .hf-arc {
+  position: absolute;
+  top: -7%;
+  right: -12%;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 165, 0, 0.42);
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+.hero-figure::after {
+  content: "";
+  position: absolute;
+  left: -14%;
+  bottom: 6%;
+  width: 62%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 165, 0, 0.16), transparent 68%);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+.hf-frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--indigo-deep);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(248, 244, 238, 0.12);
+}
+.hf-frame img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 54% 18%;
+  filter: saturate(0.92) contrast(1.04);
+}
+/* The studio backdrop is a cool grey and the palette is warm indigo. A light
+   multiply pulls the background into the brand without touching the face much. */
+.hf-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(155deg, rgba(62, 69, 104, 0.4) 0%, rgba(45, 50, 80, 0.16) 46%, rgba(240, 165, 0, 0.14) 100%);
+  mix-blend-mode: multiply;
+}
+/* Scrim so the caption card has something to sit against. */
+.hf-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(26, 30, 51, 0.2) 0%, transparent 32%, rgba(18, 21, 42, 0.74) 100%);
+}
+
+.hf-card {
+  position: absolute;
+  z-index: 2;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 18px;
+  border-radius: var(--r-md);
+  background: rgba(18, 21, 42, 0.62);
+  border: 1px solid rgba(248, 244, 238, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.34);
+}
+.hf-card .hf-mark { width: 30px; height: auto; flex: none; }
+.hf-card strong {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--off-white);
+  line-height: 1.2;
+}
+.hf-card em {
+  display: block;
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: rgba(248, 244, 238, 0.58);
+  margin-top: 3px;
+}
+
+.hf-chip {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  right: -14px;
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  background: rgba(248, 244, 238, 0.1);
+  border: 1px solid rgba(248, 244, 238, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(248, 244, 238, 0.92);
+  white-space: nowrap;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1000px) {
+  .hero-figure { max-width: 380px; }
+}
+@media (max-width: 560px) {
+  .hf-chip { right: 0; font-size: 11px; padding: 7px 13px; }
+  .hf-card { left: 12px; right: 12px; padding: 12px 14px; }
+}

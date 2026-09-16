@@ -191,8 +191,13 @@ When The Brief gets a real provider (Beehiiv, ConvertKit, Substack), replace `in
    landscape, the panel is portrait, and the face sits right of centre. If you swap the photo,
    re-check that `object-position`.
 
-   A second image would still help: a candid or working shot for the home page. One portrait
-   is now covered.
+   The same portrait now also leads the hero on `index.html`, `startup-advisory.html` and
+   `early-starters.html`, replacing the abstract logo-in-an-orb graphic. A boutique practice
+   sells the practitioner, so the hero shows the person rather than a mark. Each page carries
+   its own `.hf-chip` line (board level / product · pricing · GTM / senior perspective).
+
+   A second image would still help — a candid or working shot, so the hero and the About page
+   are not the same photograph.
 
 8. **A quote was restored to verbatim.** Indrasanan's pull quote contains "build a **better
    version** of themselves", and the closing paragraph says "we build a better version of you".
