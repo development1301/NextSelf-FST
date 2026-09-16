@@ -32,8 +32,32 @@ Nav is **Approach · Services · Testimonials · The Brief · About**, plus a *B
 "Services" is an anchor to the three-way router on the home page, which links to the three
 service pages. FAQ sits in the footer.
 
-Every CTA on every page points to `contact.html`; the HoneyBook calendar link lives there and
-nowhere else. If you change the booking URL, there is exactly one place to change it.
+Every CTA on every page points to `contact.html`, and the HoneyBook calendar is **embedded
+inline** there so visitors book without leaving the site.
+
+## Booking (HoneyBook)
+
+The scheduler is the one the live site already uses:
+
+```
+https://nextselfllc.hbportal.co/schedule/69c7d46bc8ed7c00285031d3
+```
+
+It is iframed into the `#book` section of `contact.html`. HoneyBook sends no
+`X-Frame-Options` or CSP `frame-ancestors` header, so embedding is permitted.
+
+The URL appears **only in `contact.html`**, in three places: the iframe `src`, the fallback
+link inside the frame, and the "Open in a new tab" link below it — plus the domain shown as
+visible link text. Everywhere else on the site links to `contact.html#book`. To change the
+booking URL, edit that one file:
+
+```bash
+grep -n hbportal contact.html
+```
+
+A visible fallback sits *behind* the iframe ("Loading the booking calendar… open it directly"),
+so if a privacy extension blocks the frame the booking is still reachable rather than silently
+becoming a blank box.
 
 Nav and footer are duplicated in each file (no build step, so the site stays hand-editable).
 If you add a nav item, update all ten pages.

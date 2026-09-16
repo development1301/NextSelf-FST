@@ -1344,3 +1344,57 @@ body.is-gated { overflow: hidden; }
   color: var(--muted);
 }
 .coach-cap strong { font-family: var(--serif); font-weight: 400; font-size: 15px; color: var(--indigo); }
+
+/* ==========================================================================
+   28. Booking embed (HoneyBook scheduler)
+   The scheduler is iframed so visitors book without leaving the site.
+   A visible fallback link sits beneath it, because iframes get blocked by
+   some privacy extensions and the booking must never become unreachable.
+   ========================================================================== */
+.booking {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  padding: clamp(14px, 1.6vw, 22px);
+  box-shadow: 0 26px 60px rgba(45, 50, 80, 0.08);
+}
+.booking-frame {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--off-white);
+  min-height: 760px;
+}
+.booking-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 760px;
+  border: 0;
+}
+/* Sits behind the iframe: if the frame is blocked or slow, this shows through. */
+.booking-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 40px;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+.booking-frame iframe { position: relative; z-index: 1; }
+.booking-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 10px 6px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+@media (max-width: 640px) {
+  .booking-frame, .booking-frame iframe { min-height: 880px; }
+}
