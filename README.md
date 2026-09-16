@@ -158,8 +158,20 @@ When The Brief gets a real provider (Beehiiv, ConvertKit, Substack), replace `in
    on the brand brief's own *never say this* list ("Become the best version of yourself").
    Replaced with **"Understand how you operate. Then decide what changes."**
 
-7. **There is no photograph of Indrasanan.** This is now the single highest-impact thing left.
-   The coach panel currently holds the "N›" mark on a dark gradient as a placeholder, and the
-   brief confirms no photography library exists. One good, well-lit portrait — plus a second
-   candid or desk shot — would do more for credibility on this page than any further design
-   work. The panel is sized `3 / 3.6` portrait; drop an image in and it will fill correctly.
+7. ~~There is no photograph of Indrasanan.~~ **Resolved.** There *was* one all along — embedded
+   as a base64 JPEG in the live site's `#about` section (978×803, `alt="Indrasanan Krishnan"`).
+   Extracted, resized to 900px and optimised from 104KB to 36KB as
+   `assets/img/indrasanan.jpg`, now used on `about.html` and as that page's `og:image`.
+
+   The panel crops it with `object-fit: cover` and `object-position: 54% 22%` — the source is
+   landscape, the panel is portrait, and the face sits right of centre. If you swap the photo,
+   re-check that `object-position`.
+
+   A second image would still help: a candid or working shot for the home page. One portrait
+   is now covered.
+
+8. **A quote was restored to verbatim.** Indrasanan's pull quote contains "build a **better
+   version** of themselves", and the closing paragraph says "we build a better version of you".
+   Both echo the brand brief's *never say this* list. They are his own attributed words, so
+   they have been left exactly as written on the live site rather than edited. If you want the
+   brief applied strictly here, that is a decision for him — not something to change silently.

@@ -1296,3 +1296,51 @@ body.is-gated { overflow: hidden; }
   .tm-grid { grid-template-columns: 1fr; }
   .tm.is-featured { grid-column: span 1; }
 }
+
+/* ==========================================================================
+   27. Coach portrait — real photograph
+   The panel is portrait (3/3.6) and the source photo is landscape, so the
+   image is cropped with object-fit rather than letterboxed. object-position
+   is biased slightly right because the face sits right of centre.
+   ========================================================================== */
+/* The base panel centres its contents (it was built to hold the logo mark).
+   A photo has to fill instead, so stretch rather than centre. */
+.coach-portrait.is-photo { padding: 0; place-items: stretch; }
+/* Absolutely positioned, not height:100%. A percentage height inside a box
+   sized by aspect-ratio creates a circular dependency, and the image ends up
+   at its intrinsic ratio and overflows instead of being cropped by object-fit. */
+.coach-portrait.is-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 54% 22%;
+  border-radius: inherit;
+  z-index: 1;
+}
+/* Very light warm scrim so the photo's cool grey ground sits with the palette,
+   plus a hairline frame. Deliberately subtle — a headshot should read as itself. */
+.coach-portrait.is-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  border: 1px solid rgba(248, 244, 238, 0.14);
+  background: linear-gradient(170deg, rgba(240, 165, 0, 0.05) 0%, transparent 42%, rgba(26, 30, 51, 0.24) 100%);
+  width: auto; height: auto;
+  right: 0; bottom: 0;
+}
+
+/* Caption strip under the portrait */
+.coach-cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.coach-cap strong { font-family: var(--serif); font-weight: 400; font-size: 15px; color: var(--indigo); }
