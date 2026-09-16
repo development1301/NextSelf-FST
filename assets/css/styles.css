@@ -1661,3 +1661,60 @@ body.is-gated { overflow: hidden; }
 }
 .sec-dark .who { color: rgba(248, 244, 238, 0.6); }
 .sec-dark .who b { color: var(--gold-soft); }
+
+/* ==========================================================================
+   33. Service card prominence
+   White cards on the off-white ground were nearly invisible. The section
+   takes the warm ground so the cards separate from it, and the cards get
+   definition at rest rather than only on hover.
+   ========================================================================== */
+.card {
+  box-shadow: 0 2px 4px rgba(45, 50, 80, 0.03), 0 10px 26px rgba(45, 50, 80, 0.045);
+}
+.sec-warm .card { background: var(--paper); }
+
+/* Icon becomes a badge — a bare hairline glyph read as a stray mark. */
+.route .icon {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: rgba(45, 50, 80, 0.055);
+  border: 1px solid var(--line);
+  color: var(--indigo);
+  opacity: 1;
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), color 0.4s var(--ease);
+}
+.route:hover .icon {
+  background: rgba(240, 165, 0, 0.12);
+  border-color: rgba(240, 165, 0, 0.45);
+  color: var(--gold-deep);
+}
+
+.route .h3 { margin-top: 20px; }
+
+/* The price is the thing people scan for, so stop styling it as fine print. */
+.route .route-foot { padding-top: 24px; border-top: 1px solid var(--line); }
+.route .route-foot .link-arrow {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--indigo);
+  padding-bottom: 0;
+}
+.route .route-foot .link-arrow::after { display: none; }
+.route .route-foot .link-arrow .arrow { color: var(--gold-deep); }
+
+/* Audience line: small, but it should not disappear. */
+.who { font-size: 12px; color: var(--indigo-2); }
+
+/* The NEW badge sat in the flow, so the two badged cards pushed their titles
+   down and the three headings no longer lined up. Pin it to the corner. */
+.route { position: relative; }
+.route .badge {
+  position: absolute;
+  top: clamp(26px, 2.8vw, 38px);
+  right: clamp(26px, 2.8vw, 38px);
+  margin: 0;
+  align-self: auto;
+}
