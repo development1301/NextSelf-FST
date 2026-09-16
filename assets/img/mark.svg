@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258 161" role="img" aria-label="NextSelf">
+  <!-- Traced from the supplied wordmark. The N is two 25-unit bars plus a
+       diagonal; the chevron is a 45-degree polyline with an 18-unit stroke.
+       Standalone use (favicon, <img>) renders in the logo's bronze. When the
+       mark needs another colour or a gradient, inline it instead — an <img>
+       cannot inherit currentColor from the page. -->
+  <g fill="#ab8a61">
+    <rect x="0" y="0" width="25" height="161"/>
+    <rect x="139" y="0" width="25" height="161"/>
+    <path d="M2 0 H35 L164 157 V161 H143 Z"/>
+  </g>
+  <path d="M197 8 L244 56.5 L197 105"
+        fill="none"
+        stroke="#ab8a61"
+        stroke-width="18"
+        stroke-linecap="butt"
+        stroke-linejoin="miter"
+        stroke-miterlimit="10"/>
+</svg>

@@ -1052,7 +1052,10 @@ body.is-gated { overflow: hidden; }
 /* ---------- 22. Responsive ---------- */
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-art { max-width: 380px; margin-inline: auto; }
+  /* width:100% is load-bearing. `margin-inline:auto` cancels a grid item's
+     default stretch, and every child here is absolutely positioned, so the
+     intrinsic width collapses to 0 and the whole thing disappears. */
+  .hero-art { width: 100%; max-width: 380px; margin-inline: auto; }
   .routes, .tiers, .compare { grid-template-columns: 1fr; }
   .fit-grid, .pillars-layout, .coach-layout, .brief-panel { grid-template-columns: 1fr; }
   .fit-not, .pillars-sticky, .coach-aside { position: static; }
@@ -1402,4 +1405,28 @@ body.is-gated { overflow: hidden; }
 }
 @media (max-width: 640px) {
   .booking-frame, .booking-frame iframe { min-height: 880px; }
+}
+
+/* ==========================================================================
+   29. Logo presence
+   The hero mark was a tiny full lockup lost inside a large circle. It is now
+   the N-chevron alone, large, in a gold gradient — the mark reads as an icon
+   at that size where the full lockup could not.
+   ========================================================================== */
+.core { padding: 0 !important; }
+.core-mark {
+  width: 46%;
+  height: auto;
+  filter: drop-shadow(0 10px 26px rgba(240, 165, 0, 0.3));
+}
+
+/* Nav + footer lockups sized up; the subline needs the extra height to stay
+   legible, and the raster was reading soft at 30px. */
+.nav-logo img { height: 34px; }
+.nav.is-stuck .nav-logo img { height: 31px; }
+.footer-logo img { height: 34px; }
+.gate img { height: 40px; }
+
+@media (max-width: 780px) {
+  .nav-logo img, .nav.is-stuck .nav-logo img { height: 29px; }
 }
