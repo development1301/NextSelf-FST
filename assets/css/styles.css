@@ -1639,3 +1639,25 @@ body.is-gated { overflow: hidden; }
   color: var(--indigo);
 }
 .tm-demo-banner strong { font-weight: 600; }
+
+/* ==========================================================================
+   32. "Who it's for" label
+   Every service and session states its audience explicitly rather than
+   burying it in the body copy.
+   ========================================================================== */
+.who {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: -2px 0 14px;
+}
+.who b {
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-right: 8px;
+}
+.sec-dark .who { color: rgba(248, 244, 238, 0.6); }
+.sec-dark .who b { color: var(--gold-soft); }
