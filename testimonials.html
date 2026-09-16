@@ -99,28 +99,84 @@
          healthcare") is fine and is often what people will agree to.
          ================================================================== -->
 
-    <div class="tm-grid">
-      <div class="tm-placeholder reveal">
-        <div class="tm-mark">&rdquo;</div>
-        <p>Featured testimonial slot. Your strongest quote goes here — add <code>is-featured</code> to make it span two columns on a dark ground.</p>
-      </div>
-      <div class="tm-placeholder reveal">
-        <div class="tm-mark">&rdquo;</div>
-        <p>Testimonial slot — awaiting written permission to publish.</p>
-      </div>
-      <div class="tm-placeholder reveal">
-        <div class="tm-mark">&rdquo;</div>
-        <p>Testimonial slot — awaiting written permission to publish.</p>
-      </div>
-      <div class="tm-placeholder reveal">
-        <div class="tm-mark">&rdquo;</div>
-        <p>Testimonial slot — awaiting written permission to publish.</p>
-      </div>
-      <div class="tm-placeholder reveal">
-        <div class="tm-mark">&rdquo;</div>
-        <p>Testimonial slot — awaiting written permission to publish.</p>
+    <div class="tm-demo-banner" id="tm-demo-banner" hidden>
+      <strong>Preview mode.</strong> The quotes below are fictional samples shown only because this
+      URL has <code>?demo=1</code>. They are never shown on the published page. Remove the parameter to see the live state.
+    </div>
+
+    <div class="tm-grid" id="tm-grid"></div>
+
+    <div class="tm-empty reveal" id="tm-empty">
+      <p class="eyebrow">Nothing here yet</p>
+      <h2 class="h2">On purpose.</h2>
+      <p>NextSelf is a young practice and coaching is a private relationship. Every quote on this
+        page will be a real client&rsquo;s words, published only once they have seen exactly how it
+        will appear and agreed to it.</p>
+      <p>Until then this space stays empty rather than being filled with something invented. If you
+        are weighing up whether to work with me, the honest substitute is the track record itself —
+        and a thirty-minute conversation in which you can judge for yourself.</p>
+      <div class="tm-empty-foot">
+        <div><span class="k">30+</span><span class="v">Years leading, board and C-suite</span></div>
+        <div><span class="k">5</span><span class="v">Industries · 4 continents</span></div>
+        <div><span class="k">20+</span><span class="v">Professionals coached</span></div>
       </div>
     </div>
+
+    <!-- Fictional samples. Rendered ONLY when the URL carries ?demo=1, so they can
+         never appear on the published page. Replace with real quotes as they arrive
+         (copy a block into the grid above and delete it from here). -->
+    <template id="tm-samples">
+      <article class="tm is-featured">
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>SAMPLE — I came in wanting a promotion strategy and left understanding why the
+          last two had stalled. That reframing was uncomfortable and completely correct.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">SP</span>
+          <span><span class="tm-name">Sample Person</span><span class="tm-role">Director · Healthcare</span></span>
+        </div>
+        <span class="tm-tag">Executive coaching</span>
+      </article>
+      <article class="tm">
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>SAMPLE — He does not hand you a framework. He asks the question you have been
+          avoiding, then sits with you while you answer it.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">SP</span>
+          <span><span class="tm-name">Sample Person</span><span class="tm-role">VP Engineering · SaaS</span></span>
+        </div>
+        <span class="tm-tag">Executive coaching</span>
+      </article>
+      <article class="tm">
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>SAMPLE — We scoped a pricing review and got a much harder conversation about who
+          we were actually selling to. Worth several times what we paid.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">SP</span>
+          <span><span class="tm-name">Sample Person</span><span class="tm-role">Founder · Seed stage</span></span>
+        </div>
+        <span class="tm-tag">Startup advisory</span>
+      </article>
+      <article class="tm">
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>SAMPLE — One hour on how I was being perceived at work changed more than a year
+          of trying to work harder at it.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">SP</span>
+          <span><span class="tm-name">Sample Person</span><span class="tm-role">Analyst · Second year</span></span>
+        </div>
+        <span class="tm-tag">Early starters</span>
+      </article>
+      <article class="tm">
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>SAMPLE — What I valued was that he told me when he thought I was wrong, and told
+          me plainly when he thought the decision was already made.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">SP</span>
+          <span><span class="tm-name">Sample Person</span><span class="tm-role">Operations lead · Manufacturing</span></span>
+        </div>
+        <span class="tm-tag">Executive coaching</span>
+      </article>
+    </template>
 
     <div class="tm-note reveal">
       <strong>Nothing here is invented.</strong> The brand brief is explicit that no outcomes,

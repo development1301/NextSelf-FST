@@ -262,6 +262,27 @@
     frame.addEventListener('error', function () { wrap.classList.add('is-failed'); });
   }
 
+  /* ---- Testimonial demo preview -------------------------------------- */
+  /* The published page must never show invented quotes. The samples live in a
+     <template> and are injected only when the URL carries ?demo=1, so they can
+     be shown to a stakeholder without ever appearing to the public. */
+  function initTestimonialDemo() {
+    var grid = document.getElementById('tm-grid');
+    var tpl = document.getElementById('tm-samples');
+    if (!grid || !tpl) return;
+
+    var demo = new URLSearchParams(window.location.search).get('demo') === '1';
+    if (!demo) return;
+
+    grid.appendChild(tpl.content.cloneNode(true));
+
+    var empty = document.getElementById('tm-empty');
+    if (empty) empty.hidden = true;
+
+    var banner = document.getElementById('tm-demo-banner');
+    if (banner) banner.hidden = false;
+  }
+
   /* ---- Year ---------------------------------------------------------- */
   function initYear() {
     document.querySelectorAll('[data-year]').forEach(function (el) {
@@ -278,6 +299,7 @@
     initTabs();
     initBrief();
     initBooking();
+    initTestimonialDemo();
     initYear();
   }
 
