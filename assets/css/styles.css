@@ -1445,18 +1445,25 @@ body.is-gated { overflow: hidden; }
   padding: 0 0 26px 0;
 }
 
-/* Gold arc sweeping behind the frame — brand geometry, not decoration soup. */
-.hero-figure .hf-arc {
+/* Halo behind the frame. Drawn in SVG rather than as a CSS border arc: a
+   border arc terminates in blunt square cuts at arbitrary angles, which is
+   what made the old one read as a broken circle. This one has round caps and
+   a stroke that fades to nothing at both ends, so it dissolves instead. */
+.hero-figure .hf-halo {
   position: absolute;
-  top: -7%;
-  right: -12%;
-  width: 78%;
+  /* Centred on the frame and sized past its taller axis. The frame is 4:5, so
+     a square sized to the figure width only pokes out at the top. */
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 152%;
+  /* The global `svg { max-width: 100% }` reset would clamp this back to the
+     figure width and hide the halo behind the frame. */
+  max-width: none;
+  height: auto;
   aspect-ratio: 1;
-  border-radius: 50%;
-  border: 1px solid rgba(240, 165, 0, 0.42);
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-  transform: rotate(18deg);
+  z-index: 0;
+  overflow: visible;
   pointer-events: none;
 }
 .hero-figure::after {

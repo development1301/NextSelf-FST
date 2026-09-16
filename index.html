@@ -78,7 +78,18 @@
     </div>
 
     <figure class="hero-figure reveal">
-      <span class="hf-arc" aria-hidden="true"></span>
+      <svg class="hf-halo" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="haloFade" gradientUnits="userSpaceOnUse" x1="40" y1="120" x2="330" y2="330">
+            <stop offset="0" stop-color="#f0a500" stop-opacity="0"/>
+            <stop offset="0.28" stop-color="#f6c25c" stop-opacity="0.75"/>
+            <stop offset="0.62" stop-color="#f0a500" stop-opacity="0.5"/>
+            <stop offset="1" stop-color="#f0a500" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <circle cx="200" cy="200" r="190" stroke="rgba(248,244,238,0.09)" stroke-width="1"/>
+        <path d="M21.5 135 A190 190 0 1 1 295 364.5" stroke="url(#haloFade)" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
       <div class="hf-frame">
         <img src="assets/img/indrasanan.jpg" alt="Indrasanan Krishnan, founder and coach at NextSelf" width="900" height="738">
       </div>
