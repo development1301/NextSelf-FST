@@ -1718,3 +1718,30 @@ body.is-gated { overflow: hidden; }
   margin: 0;
   align-self: auto;
 }
+
+/* ==========================================================================
+   34. Card hover — indigo glow behind the tile
+   Built from layered box-shadows rather than a pseudo-element: .card sets
+   overflow:hidden for the gold top wipe, which would clip a ::after plate,
+   but an element's own box-shadow is never clipped by its own overflow.
+   ========================================================================== */
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(62, 69, 104, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(62, 69, 104, 0.24),          /* crisp indigo edge          */
+    0 0 0 7px rgba(62, 69, 104, 0.09),          /* soft halo ring, all sides  */
+    0 0 46px 4px rgba(62, 69, 104, 0.34),       /* the bloom — no y offset,   */
+    0 22px 48px -8px rgba(62, 69, 104, 0.42),   /* so it surrounds the tile   */
+    0 46px 92px -26px rgba(26, 30, 51, 0.5);    /* depth underneath           */
+}
+/* The featured pricing tier is already indigo, so it glows outward in gold
+   instead — a blue glow on a blue card would read as a blur. */
+.tier.is-featured:hover {
+  border-color: rgba(240, 165, 0, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(240, 165, 0, 0.22),
+    0 14px 32px rgba(26, 30, 51, 0.3),
+    0 30px 66px -12px rgba(240, 165, 0, 0.28),
+    0 46px 92px -26px rgba(26, 30, 51, 0.55);
+}
