@@ -1745,3 +1745,43 @@ body.is-gated { overflow: hidden; }
     0 30px 66px -12px rgba(240, 165, 0, 0.28),
     0 46px 92px -26px rgba(26, 30, 51, 0.55);
 }
+
+/* ==========================================================================
+   35. Nav logo — live mark + brand type
+   The lockup was one flat raster, so nothing about it could respond. The
+   mark is now inline SVG (traced, so it stays exact) sitting next to the
+   type cropped from the original artwork — which keeps the wordtype
+   pixel-faithful while letting the mark animate.
+   ========================================================================== */
+.nav-logo {
+  display: flex;
+  align-items: flex-end;  /* mark and type share a baseline in the artwork */
+  gap: 12px;
+}
+.nav-mark {
+  height: 30px;
+  width: auto;
+  color: var(--bronze);
+  overflow: visible;      /* the chevron travels outside the viewBox */
+  transition: color 0.4s var(--ease);
+}
+.nav-logo img { height: 26px; width: auto; }
+
+/* The chevron is the brand idea — "next". On hover it actually goes there. */
+.nav-mark .nm-chev {
+  transform-box: view-box;
+  transition: transform 0.45s var(--ease-out);
+}
+.nav-logo:hover .nm-chev { transform: translateX(26px); }
+.nav-logo:hover .nav-mark { color: var(--gold); }
+
+.nav.is-stuck .nav-mark { height: 27px; }
+.nav.is-stuck .nav-logo img { height: 23px; }
+
+@media (max-width: 780px) {
+  .nav-mark, .nav.is-stuck .nav-mark { height: 25px; }
+  .nav-logo img, .nav.is-stuck .nav-logo img { height: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-logo:hover .nm-chev { transform: none; }
+}
