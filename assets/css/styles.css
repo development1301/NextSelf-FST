@@ -1756,16 +1756,16 @@ body.is-gated { overflow: hidden; }
 .nav-logo {
   display: flex;
   align-items: flex-end;  /* mark and type share a baseline in the artwork */
-  gap: 12px;
+  gap: 15px;
 }
 .nav-mark {
-  height: 30px;
+  height: 42px;
   width: auto;
   color: var(--bronze);
   overflow: visible;      /* the chevron travels outside the viewBox */
   transition: color 0.4s var(--ease);
 }
-.nav-logo img { height: 26px; width: auto; }
+.nav-logo img { height: 36px; width: auto; }
 
 /* The chevron is the brand idea — "next". On hover it actually goes there. */
 .nav-mark .nm-chev {
@@ -1775,12 +1775,12 @@ body.is-gated { overflow: hidden; }
 .nav-logo:hover .nm-chev { transform: translateX(26px); }
 .nav-logo:hover .nav-mark { color: var(--gold); }
 
-.nav.is-stuck .nav-mark { height: 27px; }
-.nav.is-stuck .nav-logo img { height: 23px; }
+.nav.is-stuck .nav-mark { height: 36px; }
+.nav.is-stuck .nav-logo img { height: 31px; }
 
 @media (max-width: 780px) {
-  .nav-mark, .nav.is-stuck .nav-mark { height: 25px; }
-  .nav-logo img, .nav.is-stuck .nav-logo img { height: 22px; }
+  .nav-mark, .nav.is-stuck .nav-mark { height: 34px; }
+  .nav-logo img, .nav.is-stuck .nav-logo img { height: 29px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-logo:hover .nm-chev { transform: none; }
