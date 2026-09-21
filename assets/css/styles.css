@@ -1759,11 +1759,13 @@ body.is-gated { overflow: hidden; }
   gap: 15px;
 }
 .nav-mark {
-  height: 42px;
+  height: 50px;
   width: auto;
-  color: var(--bronze);
   overflow: visible;      /* the chevron travels outside the viewBox */
-  transition: color 0.4s var(--ease);
+  /* The gold gradient lives on the SVG itself, so the mark is bright at
+     rest rather than flat bronze. The glow is what makes it read as lit. */
+  filter: drop-shadow(0 2px 9px rgba(240, 165, 0, 0.34));
+  transition: filter 0.4s var(--ease), transform 0.45s var(--ease-out);
 }
 .nav-logo img { height: 36px; width: auto; }
 
@@ -1773,15 +1775,31 @@ body.is-gated { overflow: hidden; }
   transition: transform 0.45s var(--ease-out);
 }
 .nav-logo:hover .nm-chev { transform: translateX(26px); }
-.nav-logo:hover .nav-mark { color: var(--gold); }
+.nav-logo:hover .nav-mark {
+  filter: drop-shadow(0 3px 16px rgba(240, 165, 0, 0.62)) brightness(1.06);
+  transform: scale(1.04);
+}
 
-.nav.is-stuck .nav-mark { height: 36px; }
+.nav.is-stuck .nav-mark { height: 43px; }
 .nav.is-stuck .nav-logo img { height: 31px; }
 
 @media (max-width: 780px) {
-  .nav-mark, .nav.is-stuck .nav-mark { height: 34px; }
+  .nav-mark, .nav.is-stuck .nav-mark { height: 40px; }
   .nav-logo img, .nav.is-stuck .nav-logo img { height: 29px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-logo:hover .nm-chev { transform: none; }
+}
+
+/* Bright gold reads well on the dark nav but washes out on the cream
+   scrolled nav — the original bronze actually had more contrast there.
+   Deepen the gradient and drop the glow once the nav goes light. */
+.nav.is-stuck .nav-mark {
+  filter: brightness(0.84) saturate(1.12);
+}
+.nav.is-stuck .nav-logo:hover .nav-mark {
+  filter: brightness(0.92) saturate(1.15) drop-shadow(0 2px 10px rgba(217, 143, 4, 0.35));
+}
+@media (max-width: 780px) {
+  .nav.is-open .nav-mark { filter: brightness(0.84) saturate(1.12); }
 }

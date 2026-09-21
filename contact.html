@@ -41,12 +41,19 @@
   <div class="nav-inner">
     <a class="nav-logo" href="index.html" aria-label="NextSelf Advisory and Coaching — home">
       <svg class="nav-mark" viewBox="0 0 258 161" aria-hidden="true">
-        <g fill="currentColor">
+        <defs>
+          <linearGradient id="navGold" x1="0" y1="0" x2="0.85" y2="1">
+            <stop offset="0%" stop-color="#ffd684"/>
+            <stop offset="42%" stop-color="#f5b210"/>
+            <stop offset="100%" stop-color="#d98f04"/>
+          </linearGradient>
+        </defs>
+        <g fill="url(#navGold)">
           <rect x="0" y="0" width="25" height="161"/>
           <rect x="139" y="0" width="25" height="161"/>
           <path d="M2 0 H35 L164 157 V161 H143 Z"/>
         </g>
-        <path class="nm-chev" d="M197 8 L244 56.5 L197 105" fill="none" stroke="currentColor"
+        <path class="nm-chev" d="M197 8 L244 56.5 L197 105" fill="none" stroke="url(#navGold)"
               stroke-width="18" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"/>
       </svg>
       <img class="logo-light" src="assets/img/wordtype-light.png" alt="">
