@@ -65,38 +65,43 @@ calendar behind an error.
 Nav and footer are duplicated in each file (no build step, so the site stays hand-editable).
 If you add a nav item, update all ten pages.
 
-## Testimonials
+## Testimonials — PLACEHOLDERS ARE LIVE
 
-The published page shows **no invented quotes**. Fabricated endorsements are prohibited by the
-brand brief, and for a US business they are actionable under the FTC's endorsement rules
-(16 CFR Part 255) — which since 2024 carry civil penalties. For a practice selling discretion
-and honesty, it is also the single worst thing to be caught doing.
+> **Read this before the site goes public.**
 
-**Live state.** `testimonials.html` and the home page both show a designed panel —
-*"Nothing here yet. On purpose."* — explaining that quotes appear only with permission, backed
-by the real credentials. It reads as discretion rather than absence, and is publishable as is.
+`index.html` (3 cards) and `testimonials.html` (6 cards) currently show **written examples
+with invented names** — A. Mehta, J. Okonkwo, L. Fernandes, S. Dutta, M. Halvorsen,
+R. Castellanos. They exist so the layout reads finished while real quotes are collected.
 
-**Preview mode.** Five clearly fictional samples live in a `<template>` and render **only** when
-the URL carries `?demo=1`:
+They are deliberately marked, in two ways:
 
+1. Every card carries a **`<span class="tm-sample">Sample</span>`** chip in its corner.
+2. An amber **`.tm-placeholder-note`** sits above each grid.
+
+Leave both in place until the quotes are real. Fabricated endorsements are prohibited by the
+brand brief and actionable under the FTC's endorsement rules (16 CFR Part 255), which since
+2024 carry civil penalties — and for a practice selling discretion, being caught is worse than
+the fine.
+
+### Going live
+
+Per card: replace the `<blockquote>`, `.tm-name` and `.tm-role` with the real words and the
+attribution that person agreed to, then delete that card's `Sample` chip. When no chips remain,
+delete the `.tm-placeholder-note` from both pages.
+
+```bash
+grep -n "tm-sample|tm-placeholder-note" index.html testimonials.html
 ```
-http://localhost:4180/testimonials.html?demo=1
-```
 
-That shows the populated layout to a stakeholder, behind a loud striped "Preview mode" banner,
-with every quote prefixed `SAMPLE —` and attributed to "Sample Person". Without the parameter
-the samples are inert markup and never reach a visitor. Verified: 0 quotes rendered and no
-`SAMPLE` text anywhere in the live DOM; 5 rendered with `?demo=1`.
+- Attribution can be anonymised — "Director · Healthcare" works, and is often what people will
+  actually agree to.
+- The avatar is **initials, not a photo**, so nobody has to supply a headshot.
+- `is-featured` on one card spans two columns on a dark ground. Use it for the single strongest
+  quote only — the effect dies if everything is featured.
 
-**Adding a real one.** Copy a block out of the `<template>` in `testimonials.html` into
-`<div class="tm-grid">` above it, replace the text, and delete the sample. Once the grid has
-real content, delete the `#tm-empty` panel. Do the same on `index.html`.
-
-- The avatar is **initials, not a photo**, so you never have to ask anyone for a headshot.
-- Anonymised attribution ("Director · Healthcare") is fully supported and is often what people
-  will actually agree to.
-- Add `is-featured` to one card to make it span two columns on a dark ground. Use it for your
-  single strongest quote only — the effect dies if everything is featured.
+A real track record grid (`$55M` programme, 145-person org, 50+ programmes, 45+ organisations,
+5 industries, 20+ coached) sits on `testimonials.html` below the quotes. Those figures come from
+the About page and the FAQ, and are the one part of that page that needs no caveat.
 
 ## Running it locally
 

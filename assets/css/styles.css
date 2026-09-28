@@ -1858,3 +1858,45 @@ body.is-gated { overflow: hidden; }
 
 @media (max-width: 900px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .proof-grid { grid-template-columns: 1fr; } }
+
+/* ==========================================================================
+   37. Placeholder testimonials
+   Visible on the page so the design reads finished, but unmistakably
+   marked. Delete the .tm-sample chips and .tm-placeholder-note to go live.
+   ========================================================================== */
+.tm-sample {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  background: rgba(240, 165, 0, 0.12);
+  border: 1px solid rgba(240, 165, 0, 0.4);
+  border-radius: var(--r-pill);
+  padding: 3px 9px;
+  z-index: 3;
+}
+.tm.is-featured .tm-sample {
+  color: var(--gold-soft);
+  background: rgba(240, 165, 0, 0.16);
+  border-color: rgba(240, 165, 0, 0.5);
+}
+.tm-placeholder-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(240, 165, 0, 0.07);
+  border: 1px solid rgba(240, 165, 0, 0.32);
+  border-radius: var(--r-md);
+  padding: 15px 19px;
+  margin-bottom: 26px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--indigo-2);
+  max-width: 78ch;
+}
+.tm-placeholder-note b { color: var(--gold-deep); font-weight: 600; }
+.sec-dark .tm-placeholder-note { color: rgba(248,244,238,.8); }

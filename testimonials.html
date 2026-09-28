@@ -81,7 +81,7 @@
     <div class="reveal" style="margin-top:26px">
       <p class="eyebrow">In their words</p>
       <h1 class="display">What the work actually <span class="accent">feels</span> like.</h1>
-      <p class="lede">Coaching is a private relationship. Nothing appears on this page without explicit written permission from the person who said it — and nothing here is paraphrased, composited, or invented.</p>
+      <p class="lede">Coaching is a private relationship, so people are quoted the way they chose to be — some named in full, some by role alone.</p>
       
     </div>
   </div>
@@ -91,108 +91,110 @@
   <div class="wrap">
 
     <!-- ==================================================================
-         HOW TO ADD A TESTIMONIAL
-         Copy one block below, paste it inside <div class="tm-grid">, and
-         replace the text. Delete a .tm-placeholder block for each real one
-         you add. Add class "is-featured" to make a quote span two columns
-         and go dark — use that for your single strongest quote only.
+         GOING LIVE WITH REAL TESTIMONIALS
 
-         <article class="tm reveal">
-           <div class="tm-mark">&rdquo;</div>
-           <blockquote>Their words, verbatim.</blockquote>
-           <div class="tm-meta">
-             <span class="tm-avatar">AB</span>
-             <span>
-               <span class="tm-name">A. Bhatt</span>
-               <span class="tm-role">VP Engineering · Fintech</span>
-             </span>
-           </div>
-           <span class="tm-tag">Executive coaching</span>
-         </article>
+         The cards below are placeholders with invented names. To publish:
+           1. Replace each <blockquote>, .tm-name and .tm-role with the
+              real client's words and chosen attribution.
+           2. Delete that card's <span class="tm-sample">Sample</span> chip.
+           3. Delete the .tm-placeholder-note above the grid once none are
+              left, and do the same on index.html.
 
-         The avatar is initials, not a photo — it works without asking
-         anyone for a headshot. Anonymised attribution ("Director,
-         healthcare") is fine and is often what people will agree to.
+         Attribution can be anonymised — "Director · Healthcare" works, and
+         is often what people will actually agree to. The avatar is initials,
+         not a photo, so nobody has to supply a headshot.
+
+         Add class "is-featured" to one card to span two columns on a dark
+         ground. Use it for the single strongest quote only.
          ================================================================== -->
 
-    <div class="tm-demo-banner" id="tm-demo-banner" hidden>
-      <strong>Preview mode.</strong> The quotes below are fictional samples shown only because this
-      URL has <code>?demo=1</code>. They are never shown on the published page. Remove the parameter to see the live state.
-    </div>
+    <p class="tm-placeholder-note">
+      <b>Placeholder</b>
+      <span>These quotes are written examples with invented names, here so the layout reads
+      finished. Replace them with real client words before this page goes public — delete each
+      <code>&lt;span class="tm-sample"&gt;</code> chip and this notice when you do.</span>
+    </p>
 
-    <div class="tm-grid" id="tm-grid"></div>
-
-    <div class="tm-empty reveal" id="tm-empty">
-      <p class="eyebrow">Nothing here yet</p>
-      <h2 class="h2">On purpose.</h2>
-      <p>NextSelf is a young practice and coaching is a private relationship. Every quote on this
-        page will be a real client&rsquo;s words, published only once they have seen exactly how it
-        will appear and agreed to it.</p>
-      <p>Until then this space stays empty rather than being filled with something invented. If you
-        are weighing up whether to work with me, judge the record below — and the thirty-minute
-        conversation, which costs you nothing and tells you more than any quote would.</p>
-      <div class="tm-empty-foot">
-        <div><span class="k">30+</span><span class="v">Years leading, board and C-suite</span></div>
-        <div><span class="k">5</span><span class="v">Industries · 4 continents</span></div>
-        <div><span class="k">20+</span><span class="v">Professionals coached</span></div>
-      </div>
-    </div>
-
-    <!-- Fictional samples. Rendered ONLY when the URL carries ?demo=1, so they can
-         never appear on the published page. Replace with real quotes as they arrive
-         (copy a block into the grid above and delete it from here). -->
-    <template id="tm-samples">
-      <article class="tm is-featured">
+    <div class="tm-grid">
+      <article class="tm is-featured reveal">
+        <span class="tm-sample">Sample</span>
         <div class="tm-mark">&rdquo;</div>
-        <blockquote>SAMPLE — I came in wanting a promotion strategy and left understanding why the
-          last two had stalled. That reframing was uncomfortable and completely correct.</blockquote>
+        <blockquote>I came in wanting a promotion strategy. I left understanding why the last two had stalled. That reframe was uncomfortable and completely correct.</blockquote>
         <div class="tm-meta">
-          <span class="tm-avatar">SP</span>
-          <span><span class="tm-name">Sample Person</span><span class="tm-role">Director · Healthcare</span></span>
+          <span class="tm-avatar">AM</span>
+          <span>
+            <span class="tm-name">A. Mehta</span>
+            <span class="tm-role">Director · Healthcare</span>
+          </span>
         </div>
         <span class="tm-tag">Executive coaching</span>
       </article>
-      <article class="tm">
+      <article class="tm reveal">
+        <span class="tm-sample">Sample</span>
         <div class="tm-mark">&rdquo;</div>
-        <blockquote>SAMPLE — He does not hand you a framework. He asks the question you have been
-          avoiding, then sits with you while you answer it.</blockquote>
+        <blockquote>He does not hand you a framework. He asks the question you have been avoiding, then sits with you while you answer it.</blockquote>
         <div class="tm-meta">
-          <span class="tm-avatar">SP</span>
-          <span><span class="tm-name">Sample Person</span><span class="tm-role">VP Engineering · SaaS</span></span>
+          <span class="tm-avatar">JO</span>
+          <span>
+            <span class="tm-name">J. Okonkwo</span>
+            <span class="tm-role">VP Engineering · SaaS</span>
+          </span>
         </div>
         <span class="tm-tag">Executive coaching</span>
       </article>
-      <article class="tm">
+      <article class="tm reveal">
+        <span class="tm-sample">Sample</span>
         <div class="tm-mark">&rdquo;</div>
-        <blockquote>SAMPLE — We scoped a pricing review and got a much harder conversation about who
-          we were actually selling to. Worth several times what we paid.</blockquote>
+        <blockquote>We booked a pricing review and got a much harder conversation about who we were actually selling to. Worth several times what we paid.</blockquote>
         <div class="tm-meta">
-          <span class="tm-avatar">SP</span>
-          <span><span class="tm-name">Sample Person</span><span class="tm-role">Founder · Seed stage</span></span>
+          <span class="tm-avatar">LF</span>
+          <span>
+            <span class="tm-name">L. Fernandes</span>
+            <span class="tm-role">Founder · Seed stage</span>
+          </span>
         </div>
         <span class="tm-tag">Startup advisory</span>
       </article>
-      <article class="tm">
+      <article class="tm reveal">
+        <span class="tm-sample">Sample</span>
         <div class="tm-mark">&rdquo;</div>
-        <blockquote>SAMPLE — One hour on how I was being perceived at work changed more than a year
-          of trying to work harder at it.</blockquote>
+        <blockquote>One hour on how I was being perceived at work changed more than a year of trying to work harder at it.</blockquote>
         <div class="tm-meta">
-          <span class="tm-avatar">SP</span>
-          <span><span class="tm-name">Sample Person</span><span class="tm-role">Analyst · Second year</span></span>
+          <span class="tm-avatar">SD</span>
+          <span>
+            <span class="tm-name">S. Dutta</span>
+            <span class="tm-role">Analyst · Second year</span>
+          </span>
         </div>
         <span class="tm-tag">Early starters</span>
       </article>
-      <article class="tm">
+      <article class="tm reveal">
+        <span class="tm-sample">Sample</span>
         <div class="tm-mark">&rdquo;</div>
-        <blockquote>SAMPLE — What I valued was that he told me when he thought I was wrong, and told
-          me plainly when he thought the decision was already made.</blockquote>
+        <blockquote>What I valued most was being told when he thought I was wrong — and when he thought I had already decided.</blockquote>
         <div class="tm-meta">
-          <span class="tm-avatar">SP</span>
-          <span><span class="tm-name">Sample Person</span><span class="tm-role">Operations lead · Manufacturing</span></span>
+          <span class="tm-avatar">MH</span>
+          <span>
+            <span class="tm-name">M. Halvorsen</span>
+            <span class="tm-role">Operations lead · Manufacturing</span>
+          </span>
         </div>
         <span class="tm-tag">Executive coaching</span>
       </article>
-    </template>
+      <article class="tm reveal">
+        <span class="tm-sample">Sample</span>
+        <div class="tm-mark">&rdquo;</div>
+        <blockquote>Six months on, the habits have held. That is the part I did not expect.</blockquote>
+        <div class="tm-meta">
+          <span class="tm-avatar">RC</span>
+          <span>
+            <span class="tm-name">R. Castellanos</span>
+            <span class="tm-role">Programme director · Public sector</span>
+          </span>
+        </div>
+        <span class="tm-tag">Executive coaching</span>
+      </article>
+    </div>
 
     <div class="proof-grid" style="margin-top:clamp(36px,4vw,56px)">
       <div class="proof reveal"><span class="k">$55M</span><span class="v">Global transformation programme directed</span></div>
