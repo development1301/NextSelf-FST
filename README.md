@@ -99,10 +99,6 @@ grep -n "tm-sample|tm-placeholder-note" index.html testimonials.html
 - `is-featured` on one card spans two columns on a dark ground. Use it for the single strongest
   quote only — the effect dies if everything is featured.
 
-A real track record grid (`$55M` programme, 145-person org, 50+ programmes, 45+ organisations,
-5 industries, 20+ coached) sits on `testimonials.html` below the quotes. Those figures come from
-the About page and the FAQ, and are the one part of that page that needs no caveat.
-
 ## Running it locally
 
 ```bash
