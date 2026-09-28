@@ -1803,3 +1803,58 @@ body.is-gated { overflow: hidden; }
 @media (max-width: 780px) {
   .nav.is-open .nav-mark { filter: brightness(0.84) saturate(1.12); }
 }
+
+/* ==========================================================================
+   36. Track record grid
+   Real, verifiable proof. Used where testimonials would otherwise sit, so
+   the page carries weight without anything being invented.
+   ========================================================================== */
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(248, 244, 238, 0.14);
+  border: 1px solid rgba(248, 244, 238, 0.14);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.proof {
+  background: var(--indigo-deep);
+  background-image: linear-gradient(160deg, rgba(62, 69, 104, 0.55), rgba(26, 30, 51, 0.9));
+  padding: clamp(28px, 3.2vw, 44px) clamp(22px, 2.6vw, 34px);
+  transition: background-color 0.4s var(--ease);
+}
+.proof:hover { background-image: linear-gradient(160deg, rgba(62, 69, 104, 0.8), rgba(26, 30, 51, 0.85)); }
+.proof .k {
+  display: block;
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.2vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffd684, #f0a500 55%, #c07f05);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.proof .v {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(248, 244, 238, 0.66);
+  max-width: 24ch;
+}
+.proof-note {
+  margin-top: 26px;
+  font-size: 13px;
+  color: rgba(248, 244, 238, 0.42);
+}
+/* On a light ground the same grid flips tone. */
+.sec-paper .proof-grid, .sec-warm .proof-grid { background: var(--line); border-color: var(--line); }
+.sec-paper .proof, .sec-warm .proof { background: var(--paper); background-image: none; }
+.sec-paper .proof:hover, .sec-warm .proof:hover { background-image: none; background-color: var(--off-white); }
+.sec-paper .proof .v, .sec-warm .proof .v { color: var(--muted); }
+.sec-paper .proof-note, .sec-warm .proof-note { color: var(--muted); }
+
+@media (max-width: 900px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .proof-grid { grid-template-columns: 1fr; } }
