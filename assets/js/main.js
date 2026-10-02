@@ -9,16 +9,46 @@
 
   /* ---- Scroll reveal ------------------------------------------------- */
   function initReveal() {
-    var els = document.querySelectorAll('.reveal');
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
     if (!els.length) return;
+
+    var pending = els.slice();
+    var io = null;
+
+    /* Once an element has finished revealing it leaves the system entirely:
+       dropping .reveal removes the hidden state and the transition override, so
+       nothing can hide it again and its own hover transforms work. */
+    var settle = function (el) {
+      el.style.transition = 'none';
+      el.classList.remove('reveal', 'is-in');
+      el.style.removeProperty('--d');
+      void el.offsetWidth; // commit the final state before transitions return
+      el.style.removeProperty('transition');
+    };
+
+    var reveal = function (el, animate) {
+      var k = pending.indexOf(el);
+      if (k === -1) return;
+      pending.splice(k, 1);
+      if (io) io.unobserve(el);
+      if (!animate) { settle(el); return; }
+
+      el.classList.add('is-in');
+      var done = false;
+      var finish = function () { if (!done) { done = true; settle(el); } };
+      el.addEventListener('transitionend', function (e) {
+        if (e.target === el && e.propertyName === 'opacity') finish();
+      });
+      // transitionend never fires in a background tab or an interrupted
+      // transition; don't leave the element half-faded waiting for it.
+      var delay = parseFloat(el.style.getPropertyValue('--d')) || 0;
+      setTimeout(finish, delay + 1000);
+    };
 
     /* Snap straight to the visible state. Deliberately bypasses the transition:
        a fallback that depends on an animation running is not a fallback. */
     var showAll = function () {
-      els.forEach(function (el) {
-        el.style.transition = 'none';
-        el.classList.add('is-in');
-      });
+      pending.slice().forEach(function (el) { reveal(el, false); });
     };
 
     if (reduced || !('IntersectionObserver' in window)) {
@@ -26,31 +56,63 @@
       return;
     }
 
-    /* Safety net. If the observer never fires — a background/uncomposited tab,
-       a viewport the browser reports as zero — the page would otherwise sit at
-       opacity 0 forever. After 2.5s, anything still hidden is simply shown. */
-    setTimeout(function () {
-      var stuck = document.querySelectorAll('.reveal:not(.is-in)');
-      if (stuck.length === els.length) showAll();
-    }, 2500);
+    // Stagger siblings that share a parent, capped so late items aren't slow.
+    els.forEach(function (el) {
+      var sibs = Array.prototype.filter.call(
+        el.parentNode.children,
+        function (n) { return els.indexOf(n) !== -1; }
+      );
+      el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 60 + 'ms');
+    });
 
-    var io = new IntersectionObserver(function (entries) {
+    /* Geometry check that doesn't depend on the observer. Anything in view is
+       revealed; anything already scrolled past — a fast fling, an anchor jump,
+       a restored scroll position — is shown instantly instead of waiting
+       invisibly above the viewport. */
+    var sweep = function () {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      if (!vh) { showAll(); return; }
+      pending.slice().forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.bottom <= 0) reveal(el, false);
+        else if (r.top < vh * 0.92) reveal(el, true);
+      });
+      if (!pending.length) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    };
+
+    var ticking = false;
+    var onScroll = function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; sweep(); });
+    };
+
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        // Stagger siblings that share a parent, capped so late items aren't slow.
-        var sibs = Array.prototype.filter.call(
-          el.parentNode.children,
-          function (n) { return n.classList && n.classList.contains('reveal'); }
-        );
-        var i = sibs.indexOf(el);
-        el.style.setProperty('--d', Math.min(i, 5) * 60 + 'ms');
-        el.classList.add('is-in');
-        io.unobserve(el); // fire once
+        if (entry.isIntersecting) reveal(entry.target, true);
+        else if (entry.boundingClientRect.bottom <= 0) reveal(entry.target, false);
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
 
     els.forEach(function (el) { io.observe(el); });
+
+    // Hero and page-header content is in view at load: reveal it now rather
+    // than waiting on the observer's first callback.
+    sweep();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('pageshow', sweep);
+
+    /* Safety net. If the observer never fires — a background/uncomposited tab,
+       a viewport the browser reports as zero — re-check geometry, and if still
+       nothing has been shown, show everything. */
+    setTimeout(function () {
+      sweep();
+      if (pending.length === els.length) showAll();
+    }, 2500);
   }
 
   /* ---- Nav ----------------------------------------------------------- */

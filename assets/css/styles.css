@@ -313,8 +313,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 60;
+  /* backdrop-filter is deliberately not transitioned: animating the blur over
+     content that is itself fading in makes Chrome and Safari ghost it. */
   transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease),
-              backdrop-filter 0.4s var(--ease), padding 0.4s var(--ease);
+              padding 0.4s var(--ease);
   border-bottom: 1px solid transparent;
 }
 .nav-inner {
