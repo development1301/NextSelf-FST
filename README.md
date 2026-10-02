@@ -190,8 +190,8 @@ When The Brief gets a real provider (Beehiiv, ConvertKit, Substack), replace `in
    Morrisville, NC; the Early Starters FAQ says Raleigh–Durham. All three now say Morrisville, NC.
    Confirm which is right.
 
-4. **"6 session types" was stale.** The old Early Starters hero said 6; the page listed 8, and
-   the main site said 8. Now 8 everywhere.
+4. **Session-type count is set to 6.** The old Early Starters hero said 6; the page lists 8 cards, and
+   the main site said 8. By decision the copy now says 6 everywhere; all 8 cards are still shown.
 
 5. **The Leadership Assessment is not built.** The brand brief's biggest gap is a self-serve
    ten-minute diagnostic as the front door. It is deliberately absent rather than faked — the
