@@ -76,7 +76,8 @@ R. Castellanos. They exist so the layout reads finished while real quotes are co
 They are deliberately marked, in two ways:
 
 1. Every card carries a **`<span class="tm-sample">Sample</span>`** chip in its corner.
-2. An amber **`.tm-placeholder-note`** sits above each grid.
+2. An amber **`.tm-placeholder-note`** sits above the homepage grid. (The Testimonials page
+   no longer has one — its `Sample` chips are the only marking there.)
 
 Leave both in place until the quotes are real. Fabricated endorsements are prohibited by the
 brand brief and actionable under the FTC's endorsement rules (16 CFR Part 255), which since
@@ -87,7 +88,7 @@ the fine.
 
 Per card: replace the `<blockquote>`, `.tm-name` and `.tm-role` with the real words and the
 attribution that person agreed to, then delete that card's `Sample` chip. When no chips remain,
-delete the `.tm-placeholder-note` from both pages.
+delete the `.tm-placeholder-note` from `index.html`.
 
 ```bash
 grep -n "tm-sample|tm-placeholder-note" index.html testimonials.html
@@ -186,7 +187,7 @@ When The Brief gets a real provider (Beehiiv, ConvertKit, Substack), replace `in
    amber, so the two sit side by side. Worth reconciling one way or the other.
 
 3. **Location is inconsistent.** The old main page said Raleigh, NC; the old startup page said
-   Morrisville, NC; the Early Starters FAQ says Raleigh–Durham. All three now say Raleigh, NC.
+   Morrisville, NC; the Early Starters FAQ says Raleigh–Durham. All three now say Morrisville, NC.
    Confirm which is right.
 
 4. **"6 session types" was stale.** The old Early Starters hero said 6; the page listed 8, and
