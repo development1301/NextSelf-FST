@@ -422,6 +422,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: center;
 }
 .hero h1 { margin: 26px 0 28px; max-width: 14ch; }
+/* Two-sentence headline: at full display size it ran to eight lines. */
+.hero h1.is-long { font-size: clamp(36px, 4.6vw, 62px); line-height: 1.08; max-width: 20ch; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px; }
 
 .hero-meta {
@@ -1421,7 +1423,7 @@ body.is-gated { overflow: hidden; }
   position: relative;
   margin: 0;
   width: 100%;
-  max-width: 440px;
+  max-width: 352px; /* 20% down from 440px, per client */
   margin-inline: auto;
   padding: 0 0 26px 0;
 }
@@ -1553,7 +1555,7 @@ body.is-gated { overflow: hidden; }
 }
 
 @media (max-width: 1000px) {
-  .hero-figure { max-width: 380px; }
+  .hero-figure { max-width: 304px; }
 }
 @media (max-width: 560px) {
   .hf-chip { right: 0; font-size: 11px; padding: 7px 13px; }
@@ -1639,6 +1641,16 @@ body.is-gated { overflow: hidden; }
 /* The NEW badge sat in the flow, so the two badged cards pushed their titles
    down and the three headings no longer lined up. Pin it to the corner. */
 .route { position: relative; }
+
+/* Whole card is the link. The title carries the real <a>; its ::after
+   stretches over the card so a click anywhere lands on the page. The price
+   link sits above it and goes to the same place. */
+.route .route-link { color: inherit; text-decoration: none; }
+.route .route-link::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+.route .route-foot .link-arrow { position: relative; z-index: 2; }
+.route .route-link:focus-visible { outline: none; }
+.route:has(.route-link:focus-visible) { outline: 2px solid var(--gold); outline-offset: 3px; }
+.route:hover .route-link { color: var(--indigo); }
 .route .badge {
   position: absolute;
   top: clamp(26px, 2.8vw, 38px);
