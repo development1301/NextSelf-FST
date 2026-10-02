@@ -31,6 +31,8 @@
       if (k === -1) return;
       pending.splice(k, 1);
       if (io) io.unobserve(el);
+      // Survives settle(), so entrance effects inside the element can key off it.
+      el.classList.add('was-revealed');
       if (!animate) { settle(el); return; }
 
       el.classList.add('is-in');

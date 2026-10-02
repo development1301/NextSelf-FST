@@ -4,7 +4,7 @@ Static site. No build step, no dependencies. Ten pages plus a shared stylesheet 
 
 ```
 index.html                      Home — overview that routes onward
-approach.html                   The NextSelf Model, four pillars, engagement, fit
+approach.html                   Where it starts, four pillars, engagement, on the field, fit
 coaching.html                   Executive coaching + pricing + the AI comparison
 startup-advisory.html           Founders & early-stage teams
 early-starters.html             New grads & early career
