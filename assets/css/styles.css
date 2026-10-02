@@ -815,6 +815,18 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--muted-2);
 }
 .compare-col.is-us li::before { background: var(--gold); }
+/* Coaching page: every point on the human side stays on one line. Side by
+   side from 1200px with the blue column widened; stacked below that so the
+   line still has room. Under 700px a phone can't hold it, so it wraps. */
+@media (min-width: 1200px) {
+  .compare.is-oneline { grid-template-columns: 0.72fr 1fr; }
+}
+@media (max-width: 1199px) {
+  .compare.is-oneline { grid-template-columns: 1fr; }
+}
+@media (min-width: 700px) {
+  .compare.is-oneline .is-us li { white-space: nowrap; }
+}
 
 /* ---------- 15. Pricing ---------- */
 .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
